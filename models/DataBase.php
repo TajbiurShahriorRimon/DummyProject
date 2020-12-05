@@ -40,4 +40,12 @@ class DataBase
         $result = mysqli_query($this->con, $sqlQuery);
         //$row = mysqli_num_rows($result);
     }
+
+    function addProduct($prodName, $price, $quantity, $desc)
+    {
+        $sqlQuery = "INSERT INTO products (product_name, price, quantity, description) VALUES ('$prodName', '$price', '$quantity', '$desc');";
+
+        $result = mysqli_query($this->con, $sqlQuery);
+        //$row = mysqli_num_rows($result);
+    }
 }
