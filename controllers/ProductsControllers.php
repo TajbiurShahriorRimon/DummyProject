@@ -11,21 +11,11 @@ $quantity = '';
 $err_quantity = '';
 $desc = '';
 $err_desc = '';
+$photo = '';
+$err_photo = '';
+$filepath = '';
 $has_err = false;
-if(isset($_POST['addCategory'])){
-    if (empty($_POST['catName'])) {
-        $err_name = "Category Name cannot be empty!";
-        $has_err = true;
-    }
-    else {
-        $name = htmlspecialchars($_POST['catName']);
-    }
-    if(!$has_err){
-        $db = new DataBase();
-        $db->dbCon();
-        $db->addCategory($name);
-    }
-}
+
 
 if(isset($_POST['addProduct'])) {
     if (empty($_POST['prodName'])) {
@@ -58,11 +48,21 @@ if(isset($_POST['addProduct'])) {
         $desc = htmlspecialchars($_POST['description']);
     }
 
+    if(empty($_FILES['image']['name'])){
+        $err_photo = "Photo is required";
+        $has_err = true;
+    }
+    else{
+        $filepath = $_FILES["file"]["name"];
+    }
+
     if(!$has_err){
         $db = new DataBase();
         $db->dbCon();
-        $db->addProduct($prodName, $price, $quantity, $desc);
+        $db->addProduct($prodName, $price, $quantity, $desc, $filepath);
     }
 
 }
+
+
 ?>

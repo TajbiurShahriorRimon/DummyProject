@@ -15,7 +15,7 @@ class DataBase
         if (!$this->con) {
             die("not connected");
         } else {
-            echo "Connected<br> Now Showing data <br><br/>";
+            //echo "Connected<br> Now Showing data <br><br/>";
         }
     }
 
@@ -33,19 +33,54 @@ class DataBase
         }
     }
 
+    function allCategories(){
+        $sqlQuery = "select * from categories";
+        $result = mysqli_query($this->con, $sqlQuery);
+        $row = mysqli_num_rows($result);
+
+        if($row > 0){
+            while ($rowArray = mysqli_fetch_assoc($result)){
+                $data[] = $rowArray;
+            }
+            //return $rowArray;
+            return $data;
+        }
+    }
+
     function addCategory($name)
     {
         $sqlQuery = "INSERT INTO categories(category_name) VALUES ('$name');";
 
         $result = mysqli_query($this->con, $sqlQuery);
-        //$row = mysqli_num_rows($result);
     }
 
-    function addProduct($prodName, $price, $quantity, $desc)
+    function editCategory($name, $cat_id)
     {
-        $sqlQuery = "INSERT INTO products (product_name, price, quantity, description) VALUES ('$prodName', '$price', '$quantity', '$desc');";
+        $sqlQuery = "UPDATE categories set category_name = '$name' where category_id = '$cat_id';";
 
         $result = mysqli_query($this->con, $sqlQuery);
-        //$row = mysqli_num_rows($result);
+    }
+
+    function addProduct($prodName, $price, $quantity, $desc, $filepath)
+    {
+        $sqlQuery = "INSERT INTO products (product_name, price, quantity, description, photo) VALUES ('$prodName', '$price', '$quantity', '$desc', '$filepath');";
+
+        $result = mysqli_query($this->con, $sqlQuery);
+    }
+
+    function numOfProducts($catId){
+        $sqlQuery = "SELECT sum(quantity) FROM products 
+                    WHERE category_id = '$catId'";
+
+        $result = mysqli_query($this->con, $sqlQuery);
+        $row = mysqli_num_rows($result);
+
+        if($row > 0){
+            while ($rowArray = mysqli_fetch_assoc($result)){
+                $data = $rowArray;
+            }
+            //return $rowArray;
+            return $data;
+        }
     }
 }

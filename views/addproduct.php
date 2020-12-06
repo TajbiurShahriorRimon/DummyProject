@@ -7,7 +7,7 @@ include '../controllers/ProductsControllers.php'
 ?>
 <!--addproduct starts -->
 <div class="center">
-	<form name="" method="post" class="form-horizontal form-material">
+	<form name="" method="post" enctype="multipart/form-data" class="form-horizontal form-material">
 		<div class="form-group">
 			<h4 class="text">Name:</h4> 
 			<input name="prodName" type="text" class="form-control"> <br> <?php echo $err_prodName; ?>

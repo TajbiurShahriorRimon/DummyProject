@@ -3,7 +3,7 @@ if(!isset($_COOKIE['userName'])){
     header('Location: login.php');
 }
 include 'admin_header.php';
-include '../controllers/ProductsControllers.php'
+include '../controllers/CategoryControllers.php'
 ?>
 <!--addproduct starts -->
 	<div class="center">
