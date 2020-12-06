@@ -61,6 +61,34 @@ class DataBase
         $result = mysqli_query($this->con, $sqlQuery);
     }
 
+    function categoryName($catId){
+        $sqlQuery = "SELECT category_name FROM categories
+                    WHERE category_id = '$catId'";
+
+        $result = mysqli_query($this->con, $sqlQuery);
+        $row = mysqli_num_rows($result);
+
+        if($row > 0){
+            while ($rowArray = mysqli_fetch_assoc($result)){
+                $data = $rowArray;
+            }
+            return $data;
+        }
+    }
+
+    function allProducts(){
+        $sqlQuery = "select * from products";
+        $result = mysqli_query($this->con, $sqlQuery);
+        $row = mysqli_num_rows($result);
+
+        if($row > 0){
+            while ($rowArray = mysqli_fetch_assoc($result)){
+                $data[] = $rowArray;
+            }
+            return $data;
+        }
+    }
+
     function addProduct($prodName, $price, $quantity, $desc, $filepath)
     {
         $sqlQuery = "INSERT INTO products (product_name, price, quantity, description, photo) VALUES ('$prodName', '$price', '$quantity', '$desc', '$filepath');";
@@ -79,7 +107,6 @@ class DataBase
             while ($rowArray = mysqli_fetch_assoc($result)){
                 $data = $rowArray;
             }
-            //return $rowArray;
             return $data;
         }
     }

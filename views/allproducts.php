@@ -1,4 +1,9 @@
-<?php include 'admin_header.php';?>
+<?php
+if(!isset($_COOKIE['userName'])){
+    header('Location: login.php');
+}
+include 'admin_header.php';
+?>
 <!--All Products starts -->
 
 <div class="center">
@@ -23,6 +28,30 @@
 			<td><a href="editproduct.php" class="btn btn-success">Edit</a></td>
 			<td><a class="btn btn-danger">Delete</td>
 		</tbody>
+
+        <?php
+        include '../models/DataBase.php';
+        $i = 1;
+        $array = new DataBase();
+        $array->dbCon();
+        $result = $array->allProducts();
+        foreach ($result as $data){
+            $foreign = $data['category_id'];
+            $db = new DataBase();
+            $db->dbCon();
+            $category = $db->categoryName($foreign);
+            echo "<tbody>";
+            echo "<td>".$i."</td>";
+            echo "<td>".$data['product_name']."</td>";
+            echo    "<td>".$category['category_name']."</td>";
+            echo "<td>".$data['price']."</td>";
+            echo "<td>".$data['quantity']."</td>";
+            echo "<td>"."<a href='editcategory.php' class='btn btn-success'>Edit</a>"."</td>";
+            echo "<td><a class='btn btn-danger'>Delete</td>";
+            echo "</tbody>";
+            $i++;
+        }
+        ?>
 	</table>
 </div>
 <!--Products ends -->
