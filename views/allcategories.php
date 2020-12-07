@@ -35,7 +35,7 @@ include 'admin_header.php';
             $array = new DataBase();
             $array->dbCon();
             $result = $array->allCategories();
-            if($result == false) {
+            if(!empty($result)) {
                 foreach ($result as $data) {
                     $foreign = $data['category_id'];
                     $db = new DataBase();

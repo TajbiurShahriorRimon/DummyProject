@@ -38,11 +38,15 @@ class DataBase
         $result = mysqli_query($this->con, $sqlQuery);
         $row = mysqli_num_rows($result);
 
+        $data = [];
+
         if($row > 0){
             while ($rowArray = mysqli_fetch_assoc($result)){
                 $data[] = $rowArray;
             }
-            //return $rowArray;
+            return $data;
+        }
+        else{
             return $data;
         }
     }
