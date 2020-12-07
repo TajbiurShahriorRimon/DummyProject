@@ -12,7 +12,9 @@ include '../controllers/CategoryControllers.php';
 	<form action="" method="post" class="form-horizontal form-material">
 		<div class="form-group">
 			<h4 class="text">Name:</h4> 
-			<input name="catName" type="text" class="form-control">
+			<input name="catName" value="<?php
+                                            
+                                            ?>" type="text" class="form-control"> <br> <?php echo $err_name; ?>
 		</div>
 		
 		<div class="form-group text-center">
