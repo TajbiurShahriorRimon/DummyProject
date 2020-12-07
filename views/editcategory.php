@@ -5,20 +5,6 @@ if(!isset($_COOKIE['userName'])){
 
 include 'admin_header.php';
 include '../controllers/CategoryControllers.php';
-/*if(isset($_POST['editCategory'])){
-    echo 'world'."<br>";
-    if(isset($_POST['catName'])) {
-        //echo "hello";
-        $category_id = $_GET['category_id'];
-        echo $category_id;
-        editCategory($category_id, $_POST['catName']);
-        //$db = new DataBase();
-        //$db->dbCon();
-        //$db->editCategory($category_id);
-    }
-}*/
-//$categoryName = $_POST['catName'];
-//$category_id = $_GET['category_id'];
 ?>
 <!--edit category starts -->
 <div class="center">

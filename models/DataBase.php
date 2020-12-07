@@ -128,6 +128,15 @@ class DataBase
         $result = mysqli_query($this->con, $sqlQuery);
     }
 
+    function editProduct($prodId, $prodName, $price, $quantity, $desc)
+    {
+        $sqlQuery = "UPDATE products 
+                    SET product_name = '$prodName', price = '$price', quantity = '$quantity', description = '$desc'
+                    WHERE product_id = '$prodId'";
+
+        $result = mysqli_query($this->con, $sqlQuery);
+    }
+
     function deleteProduct($productId)
     {
         $sqlQuery = "delete from products where product_id = '$productId'";

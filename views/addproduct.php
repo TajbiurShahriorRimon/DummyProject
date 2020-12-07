@@ -42,7 +42,7 @@ include '../controllers/ProductsControllers.php';
 		</div>
 		<div class="form-group">
 			<h4 class="text">Image</h4> 
-			<input name="image" type="file" class="form-control">
+			<input name="image" type="file" class="form-control"> <br> <?php echo $err_photo; ?>
 		</div>
 		<div class="form-group text-center">
 			
