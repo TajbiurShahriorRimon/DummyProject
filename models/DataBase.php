@@ -76,8 +76,9 @@ class DataBase
         }
     }
 
-    function allProducts(){
-        $sqlQuery = "select * from products";
+    function categoryList(){
+        $sqlQuery = "SELECT * FROM categories";
+
         $result = mysqli_query($this->con, $sqlQuery);
         $row = mysqli_num_rows($result);
 
@@ -89,10 +90,43 @@ class DataBase
         }
     }
 
+    function deleteCategory($categoryId)
+    {
+        echo $categoryId;
+        $sqlQuery = "DELETE FROM categories
+                    WHERE category_id = '$categoryId'";
+
+        $result = mysqli_query($this->con, $sqlQuery);
+    }
+
+    function allProducts(){
+        $sqlQuery = "select * from products";
+        $result = mysqli_query($this->con, $sqlQuery);
+        $row = mysqli_num_rows($result);
+
+        $data = []; //empty array
+
+        if($row > 0){
+            while ($rowArray = mysqli_fetch_assoc($result)){
+                $data[] = $rowArray;
+            }
+            return $data;
+        }
+        else {
+            return $data;
+        }
+    }
+
     function addProduct($prodName, $price, $quantity, $desc, $filepath)
     {
         $sqlQuery = "INSERT INTO products (product_name, price, quantity, description, photo) VALUES ('$prodName', '$price', '$quantity', '$desc', '$filepath');";
 
+        $result = mysqli_query($this->con, $sqlQuery);
+    }
+
+    function deleteProduct($productId)
+    {
+        $sqlQuery = "delete from products where product_id = '$productId'";
         $result = mysqli_query($this->con, $sqlQuery);
     }
 

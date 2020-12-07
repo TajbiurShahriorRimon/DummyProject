@@ -5,6 +5,8 @@ $name = '';
 $err_name = '';
 $prodName = '';
 $err_prodName = '';
+$category = '';
+$err_category = '';
 $price = '';
 $err_price = '';
 $quantity = '';
@@ -24,6 +26,13 @@ if(isset($_POST['addProduct'])) {
     }
     else {
         $prodName = htmlspecialchars($_POST['prodName']);
+    }
+    if(!isset($_POST['categoryList'])){
+        $err_category = 'Please select a category';
+        $has_err = true;
+    }
+    else{
+        $category = $_POST['categoryList'];
     }
     if (empty($_POST['price'])) {
         $err_price = "Price cannot be empty!";
@@ -53,12 +62,13 @@ if(isset($_POST['addProduct'])) {
         $has_err = true;
     }
     else{
-        $filepath = $_FILES["file"]["name"];
+        $filepath = $_FILES["image"]["name"];
     }
 
     if(!$has_err){
         $db = new DataBase();
         $db->dbCon();
+        //$db->addProduct($prodName, $category, $price, $quantity, $desc, $filepath);
         $db->addProduct($prodName, $price, $quantity, $desc, $filepath);
     }
 

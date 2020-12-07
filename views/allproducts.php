@@ -35,21 +35,24 @@ include 'admin_header.php';
         $array = new DataBase();
         $array->dbCon();
         $result = $array->allProducts();
-        foreach ($result as $data){
-            $foreign = $data['category_id'];
-            $db = new DataBase();
-            $db->dbCon();
-            $category = $db->categoryName($foreign);
-            echo "<tbody>";
-            echo "<td>".$i."</td>";
-            echo "<td>".$data['product_name']."</td>";
-            echo    "<td>".$category['category_name']."</td>";
-            echo "<td>".$data['price']."</td>";
-            echo "<td>".$data['quantity']."</td>";
-            echo "<td>"."<a href='editcategory.php' class='btn btn-success'>Edit</a>"."</td>";
-            echo "<td><a class='btn btn-danger'>Delete</td>";
-            echo "</tbody>";
-            $i++;
+        if(!empty($result)) {
+            echo 'not empty';
+            foreach ($result as $data) {
+                $foreign = $data['category_id'];
+                $db = new DataBase();
+                $db->dbCon();
+                $category = $db->categoryName($foreign);
+                echo "<tbody>";
+                echo "<td>" . $i . "</td>";
+                echo "<td>" . $data['product_name'] . "</td>";
+                echo "<td>" . $category['category_name'] . "</td>";
+                echo "<td>" . $data['price'] . "</td>";
+                echo "<td>" . $data['quantity'] . "</td>";
+                echo "<td>" . "<a href='editcategory.php' class='btn btn-success'>Edit</a>" . "</td>";
+                echo "<td><a href='deleteProduct.php?product_id=" . $data['product_id'] . "' class='btn btn-danger' name='." . $data['product_id'] . ".'>Delete</td>";
+                echo "</tbody>";
+                $i++;
+            }
         }
         ?>
 	</table>

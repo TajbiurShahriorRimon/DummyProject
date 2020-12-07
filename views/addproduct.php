@@ -3,7 +3,8 @@ if(!isset($_COOKIE['userName'])){
     header('Location: login.php');
 }
 include 'admin_header.php';
-include '../controllers/ProductsControllers.php'
+include '../controllers/ProductsControllers.php';
+//include '../models/DataBase.php';
 ?>
 <!--addproduct starts -->
 <div class="center">
@@ -14,9 +15,18 @@ include '../controllers/ProductsControllers.php'
 		</div>
 		<div class="form-group">
 			<h4 class="text">Category:</h4> 
-			<select class="form-control">
-				<option>Choose</option>
-			</select>
+			<select name="categoryList" class="form-control">
+				<option disabled selected>Choose</option>
+                <?php
+                include_once '../models/DataBase.php';
+                $array = new DataBase();
+                $array->dbCon();
+                $result = $array->categoryList();
+                foreach ($result as $data){
+                    echo "<option value='.".$data['category_id'].".'>".$data['category_name']."</option>";
+                }
+                ?>
+			</select> <br> <?php echo $err_category; ?>
 		</div>
 		<div class="form-group">
 			<h4 class="text">Price:</h4> 
