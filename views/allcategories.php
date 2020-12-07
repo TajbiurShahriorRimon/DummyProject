@@ -45,8 +45,8 @@ include 'admin_header.php';
                     echo "<td>" . $i . "</td>";
                     echo "<td>" . $data['category_name'] . "</td>";
                     echo "<td>" . $numOfProducts['sum(quantity)'] . "</td>";
-                    echo "<td>" . "<a href='editcategory.php' class='btn btn-success'>Edit</a>" . "</td>";
-                    echo "<td><a href='deleteCategory.php?category_id=" . $data['category_id'] . "' class='btn btn-danger' name='." . $data['category_id'] . ".'>Delete</td>";
+                    echo "<td>" . "<a href='editcategory.php?category_id=".$data['category_id']."' class='btn btn-success'>Edit</a>" . "</td>";
+                    echo "<td><a href='deleteCategory.php?category_id=".$data['category_id']."' class='btn btn-danger' name='." . $data['category_id'] . ".'>Delete</td>";
                     echo "</tbody>";
                     $i++;
                 }

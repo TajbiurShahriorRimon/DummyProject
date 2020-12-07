@@ -19,20 +19,20 @@ if(isset($_POST['addCategory'])){
         $db->addCategory($name);
     }
 }
-
-if(isset($_POST['editCategory'])){
-    if (empty($_POST['catName'])) {
-        $err_name = "Category Name cannot be empty!";
-        $has_err = true;
+//function editCategory($category_id, $categoryName){
+    if (isset($_POST['editCategory'])) {
+        if (empty($_POST['catName'])) {
+            $err_name = "Category Name cannot be empty!";
+            $has_err = true;
+        } else {
+            $name = htmlspecialchars($_POST['catName']);
+        }
+        if (!$has_err) {
+            $categoryId = $_GET['category_id'];
+            $db = new DataBase();
+            $db->dbCon();
+            $db->editCategory($name, $categoryId);
+        }
     }
-    else {
-        $name = htmlspecialchars($_POST['catName']);
-    }
-    if(!$has_err){
-        $get_id = $_GET['category_id'];
-        $db = new DataBase();
-        $db->dbCon();
-        $db->editCategory($get_id);
-    }
-}
+//}
 ?>
