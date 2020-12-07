@@ -18,6 +18,9 @@ $err_photo = '';
 $filepath = '';
 $has_err = false;
 
+$picPath = '';
+$err_pic = '';
+
 if(isset($_POST['addProduct'])) {
     if (empty($_POST['prodName'])) {
         $err_prodName = "Product Name cannot be empty!";
@@ -116,14 +119,14 @@ if(isset($_POST['editProduct'])) {
         $desc = htmlspecialchars($_POST['description']);
     }
 
-    /*if(empty($_FILES['photos']['name'])){
+    if(empty($_FILES['photos']['name'])){
         echo 'empty photo';
         $err_photo = "Photo is required";
         $has_err = true;
     }
     else{
-        $filepath = $_FILES["image"]["name"];
-    }*/
+        $filepath = $_FILES["photos"]["name"];
+    }
 
     if(!$has_err){
         echo 'sfd';
@@ -132,7 +135,7 @@ if(isset($_POST['editProduct'])) {
         $db = new DataBase();
         $db->dbCon();
         //$db->addProduct($prodName, $category, $price, $quantity, $desc, $filepath);
-        $db->editProduct($productId, $prodName, $price, $quantity, $desc);
+        $db->editProduct($productId, $prodName, $price, $quantity, $desc, $filepath);
     }
 }
 

@@ -14,7 +14,7 @@ include '../controllers/ProductsControllers.php';
 		<img class="item-image" src="https://m.media-amazon.com/images/I/41n0GIKkW8L._AC_SR160,160_.jpg"></img>
 	</td>
 	<td>
-		<form action="" method="post" class="form-horizontal form-material">
+		<form action="" method="post" enctype="multipart/form-data" class="form-horizontal form-material">
 			<div class="form-group">
 				<h4 class="text">Name:</h4> 
 				<input name="prodName" type="text" class="form-control"> <br> <?php echo $err_prodName; ?>

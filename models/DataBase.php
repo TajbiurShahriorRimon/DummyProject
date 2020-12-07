@@ -19,6 +19,13 @@ class DataBase
         }
     }
 
+    function insertUser($name, $username, $email, $password){
+        $sqlQuery = "INSERT INTO users (name, username, email, password)
+                    VALUES ('$name', '$username', '$email', '$password')";
+
+        mysqli_query($this->con, $sqlQuery);
+    }
+
     function searchUsers($username, $pass){
         $sqlQuery = "SELECT * FROM users WHERE username = '$username' AND password = '$pass';";
 
@@ -128,10 +135,10 @@ class DataBase
         $result = mysqli_query($this->con, $sqlQuery);
     }
 
-    function editProduct($prodId, $prodName, $price, $quantity, $desc)
+    function editProduct($prodId, $prodName, $price, $quantity, $desc, $filepath)
     {
         $sqlQuery = "UPDATE products 
-                    SET product_name = '$prodName', price = '$price', quantity = '$quantity', description = '$desc'
+                    SET product_name = '$prodName', price = '$price', quantity = '$quantity', description = '$desc', photo = '$filepath'
                     WHERE product_id = '$prodId'";
 
         $result = mysqli_query($this->con, $sqlQuery);
